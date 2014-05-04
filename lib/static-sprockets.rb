@@ -7,7 +7,6 @@ module StaticSprockets
 
   def self.configure(config = {})
     @config = {
-      :path_prefix => ENV['PATH_PREFIX'],
       :asset_root => "/assets"
     }.merge(config)
   end

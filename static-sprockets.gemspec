@@ -24,4 +24,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'sprockets-sass'
   gem.add_runtime_dependency 'sprockets-helpers'
   gem.add_runtime_dependency 'sprockets', '~> 2.0'
+  gem.add_runtime_dependency 'sprockets-rainpress'
+  gem.add_runtime_dependency 'uglifier'
 end
