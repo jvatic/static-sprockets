@@ -24,8 +24,9 @@ Bundler.require
 
 require './config'
 
+require 'static-sprockets/app'
 map '/' do
-  run StaticSprockets.new
+  run StaticSprockets::App.new
 end
 ```
 
