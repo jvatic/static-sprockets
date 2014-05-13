@@ -13,7 +13,11 @@ module StaticSprockets
           source = source.sub(/[#?].+?\Z/, '')
           asset = environment.find_asset(source)
           raise AssetNotFoundError.new("#{source.inspect} does not exist within #{environment.paths.inspect}!") unless asset
-          "./#{asset.digest_path}"
+          if options[:full_path]
+            StaticSprockets.config[:asset_root].to_s + "/#{asset.digest_path}"
+          else
+            "./#{asset.digest_path}"
+          end
         end
       end
 
