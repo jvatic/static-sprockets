@@ -48,6 +48,7 @@ source 'https://rubygems.org'
 
 gem 'puma'
 gem 'rake'
+gem 'mimetype-fu'
 
 gem 'static-sprockets', :git => 'git://github.com/jvatic/static-sprockets.git', :branch => 'master'
 gem 'rack-putty', :git => 'git://github.com/tent/rack-putty.git', :branch => 'master'

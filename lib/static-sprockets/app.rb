@@ -64,7 +64,6 @@ module StaticSprockets
 
     class MainLayout < Middleware
       def action(env)
-        p ["MainLayout"]
         env['response.view'] = StaticSprockets.config[:layout]
         env
       end

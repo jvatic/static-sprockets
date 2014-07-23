@@ -26,4 +26,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'sprockets', '~> 2.0'
   gem.add_runtime_dependency 'sprockets-rainpress'
   gem.add_runtime_dependency 'uglifier'
+  gem.add_runtime_dependency 'mimetype-fu'
 end

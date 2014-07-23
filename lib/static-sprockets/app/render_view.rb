@@ -29,7 +29,17 @@ module StaticSprockets
         end
 
         def asset_manifest_path(asset_name)
-          return unless manifest = StaticSprockets.config[:asset_manifest]
+          manifest = StaticSprockets.config[:asset_manifest]
+          unless manifest
+            manifest_path = File.join(StaticSprockets.config[:output_dir], "assets", "manifest.json")
+            if File.exists?(manifest_path)
+              begin
+                manifest = StaticSprockets.config[:asset_manifest] = Yajl::Parser.parse(File.read(manifest_path))
+              rescue
+              end
+            end
+          end
+          return unless manifest
           return unless Hash === manifest && Hash === manifest['files']
           compiled_name = manifest['files'].find { |k,v|
             v['logical_path'] == asset_name

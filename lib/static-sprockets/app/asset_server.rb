@@ -2,10 +2,12 @@ require 'sprockets'
 require 'sprockets-sass'
 require 'sprockets-helpers'
 require 'sass'
+require 'mimetype_fu'
 
 module StaticSprockets
   class App
     class AssetServer < Middleware
+      DEFAULT_MIME = 'application/octet-stream'.freeze
 
       module SprocketsHelpers
         AssetNotFoundError = Class.new(StandardError)
@@ -51,14 +53,29 @@ module StaticSprockets
         super
 
         @sprockets_environment = self.class.sprockets_environment
+        @assets_dir = File.join(StaticSprockets.config[:output_dir], "assets")
       end
 
       def action(env)
-        new_env = env.clone
-        new_env["PATH_INFO"] = env["REQUEST_PATH"].sub(%r{\A/assets}, '')
-        status, headers, body = @sprockets_environment.call(new_env)
-        headers.delete(Rack::Mount::RouteSet::X_CASCADE)
-        [status, headers, body]
+        asset_name = env['params'][:splat]
+        compiled_path = File.join(@assets_dir, asset_name)
+
+        if File.exists?(compiled_path)
+          [200, { 'Content-Type' => asset_mime_type(asset_name) }, [File.read(compiled_path)]]
+        else
+          new_env = env.clone
+          new_env["PATH_INFO"] = env["REQUEST_PATH"].sub(%r{\A/assets}, '')
+          status, headers, body = @sprockets_environment.call(new_env)
+          headers.delete(Rack::Mount::RouteSet::X_CASCADE)
+          [status, headers, body]
+        end
+      end
+
+      private
+
+      def asset_mime_type(asset_name)
+        mime = File.mime_type?(asset_name)
+        mime == 'unknown/unknown' ? DEFAULT_MIME : mime
       end
 
     end
