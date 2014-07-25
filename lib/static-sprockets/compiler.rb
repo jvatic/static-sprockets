@@ -38,7 +38,7 @@ module StaticSprockets
       system  "mkdir -p #{layout_dir}"
 
       self.layout_env ||= {
-        'response.view' => 'application'
+        'response.view' => StaticSprockets.config[:layout] || 'application'
       }
 
       @layout_configured = true
