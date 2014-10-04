@@ -24,4 +24,12 @@ module StaticSprockets
   def self.sprockets_config(&block)
     sprockets_config_blocks.push(block)
   end
+
+  def self.app_config_blocks
+    @app_config_blocks ||= []
+  end
+
+  def self.app_config(&block)
+    app_config_blocks.push(block)
+  end
 end

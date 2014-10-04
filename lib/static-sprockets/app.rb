@@ -69,6 +69,10 @@ module StaticSprockets
       end
     end
 
+    StaticSprockets.app_config_blocks.each do |block|
+      block.call(self)
+    end
+
     get '/assets/*' do |b|
       b.use AssetServer
     end

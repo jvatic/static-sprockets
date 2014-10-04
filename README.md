@@ -25,6 +25,14 @@ end
 StaticSprockets.sprockets_config do |sprockets_env|
   # ...
 end
+
+# You may also add routes and middleware to StaticSprockets::App
+StaticSprockets.app_config do |app|
+  app.middleware MyMiddleware
+  app.get "/my/route" do |builder|
+    builder.use MyRouteMiddleware
+  end
+end
 ```
 
 ```ruby
