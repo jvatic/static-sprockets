@@ -15,6 +15,16 @@ StaticSprockets.configure(
   :layout_output_name => 'application.html',
   :output_dir => "./build"
 )
+
+# You may call sprockets_config any number of times
+# to access the sprockets environment directly
+StaticSprockets.sprockets_config do |sprockets_env|
+  # ...
+end
+
+StaticSprockets.sprockets_config do |sprockets_env|
+  # ...
+end
 ```
 
 ```ruby
