@@ -42,15 +42,18 @@ module StaticSprockets
       end
 
       def content_security_policy
-        [
-          "font-src data: 'self'",
-          "frame-src 'self'",
-          "script-src 'self'",
-          "default-src 'self'",
-          "object-src 'none'",
-          "img-src *",
-          "connect-src *"
-        ].join('; ')
+        {
+          'font-src' => %(data: 'self'),
+          'frame-src' => %('self'),
+          'script-src' => %('self'),
+          'default-src' => %('self'),
+          'object-src' => %('none'),
+          'img-src' => %(*),
+          'connect-src' => %(*),
+        }.merge(StaticSprockets.config[:content_security_policy] || {}).reduce([]) do |m, (k,v)|
+          m << [k,v]
+          m
+        end.sort_by { |i| i[0] }.map { |i| i.join(' ') }.join('; ')
       end
     end
 
