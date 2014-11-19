@@ -33,7 +33,7 @@ module StaticSprockets
 
       configure_sprockets
 
-      self.layout_dir ||= StaticSprockets.config[:output_dir]
+      self.layout_dir ||= StaticSprockets.config[:layout_dir] || StaticSprockets.config[:output_dir]
       self.layout_path ||= File.join(layout_dir, StaticSprockets.config[:layout_output_name])
       system  "mkdir -p #{layout_dir}"
 
