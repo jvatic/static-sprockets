@@ -17,13 +17,13 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_runtime_dependency 'rack', '~> 1.0'
+  gem.add_runtime_dependency 'rack'
   gem.add_runtime_dependency 'rack-putty', '0.0.1'
 
   gem.add_runtime_dependency 'sass'
   gem.add_runtime_dependency 'sprockets-sass'
   gem.add_runtime_dependency 'sprockets-helpers'
-  gem.add_runtime_dependency 'sprockets', '~> 2.0'
+  gem.add_runtime_dependency 'sprockets'
   gem.add_runtime_dependency 'sprockets-rainpress'
   gem.add_runtime_dependency 'uglifier'
   gem.add_runtime_dependency 'mimetype-fu'
