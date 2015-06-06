@@ -1,7 +1,6 @@
 require 'sprockets'
-require 'sprockets-sass'
-require 'sprockets-helpers'
 require 'sass'
+require 'yaml'
 require 'mimetype_fu'
 
 module StaticSprockets

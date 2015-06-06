@@ -21,8 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'rack-putty', '0.0.1'
 
   gem.add_runtime_dependency 'sass'
-  gem.add_runtime_dependency 'sprockets-sass'
-  gem.add_runtime_dependency 'sprockets-helpers'
   gem.add_runtime_dependency 'sprockets'
   gem.add_runtime_dependency 'sprockets-rainpress'
   gem.add_runtime_dependency 'uglifier'
